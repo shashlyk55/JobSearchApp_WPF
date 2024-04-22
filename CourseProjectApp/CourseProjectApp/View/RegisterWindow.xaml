@@ -1,0 +1,34 @@
+﻿<Window x:Class="CourseProjectApp.View.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectApp.View"
+        xmlns:custom="clr-namespace:CourseProjectApp.UserControls.TextBoxWithPlaceholder"
+        mc:Ignorable="d"
+        Title="RegisterPage" Height="500" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="RoyalBlue">
+            <StackPanel Width="200" Height="300">
+                <TextBlock Text="Авторизация" HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="18" Foreground="White"/>
+                <custom:PlaceholderTextBox x:Name="Login_textbox" Width="200" Height="35" PlaceholderText="Логин" Margin="0,0,0,14"/>
+                <custom:PlaceholderTextBox x:Name="Password_textbox" Width="200" Height="35" PlaceholderText="Пароль" Margin="0,0,0,14"/>
+                <Button x:Name="Login_button" Content="Войти" HorizontalAlignment="Left" Width="110" Height="40" Background="#FFC700" FontSize="16">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <TextBlock Text="Регистрация" TextDecorations="Baseline" Foreground="White" HorizontalAlignment="Left" Width="80" Height="17" FontSize="13" Margin="7,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <Image Grid.Column="1" Source="../photo/pict2.png"/>
+    </Grid>
+</Window>
