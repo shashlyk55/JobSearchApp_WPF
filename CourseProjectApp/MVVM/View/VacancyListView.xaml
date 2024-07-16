@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Practic_App.MVVM.View.VacancyListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Practic_App.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../styles/ProductTheme.xaml"/>
+                <ResourceDictionary Source="../../styles/InputTheme.xaml"/>
+                <ResourceDictionary Source="../../styles/ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBox Margin="15 0 15 15" Height="34" Width="390" Grid.Row="0" Text="{Binding SearchQuery}"/>
+            <Button Content="Поиск" Width="100" Margin="15 0 15 15" Command="{Binding SearchVacancyCommand}"/>
+        </StackPanel>
+        
+        <StackPanel Margin="20 0 0 0" Orientation="Vertical" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+            <TextBlock Foreground="White" Margin="0 0 0 20" Text="Фильтрация:" FontSize="20" Height="24"/>
+
+            <TextBlock Foreground="White" Margin="0 0 0 10" Text="Зарплата:" FontSize="18" Height="22"/>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Foreground="White" Text="Мин:  " FontSize="16" Height="20"/>
+                <TextBox Height="30" Width="100" Text="{Binding MinSalary}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Foreground="White" Text="Макс: " FontSize="16" Height="20"/>
+                <TextBox Height="30" Width="100" Text="{Binding MaxSalary}"/>
+            </StackPanel>
+
+
+
+            <TextBlock Foreground="White" Margin="0 10 0 10" Text="Спецализация: " FontSize="18" Height="22"/>
+                <ComboBox Width="140" Height="24" SelectedValue="{Binding SelectedIndustry}" HorizontalAlignment="Left">
+                    <ComboBoxItem Content="Все"/>
+                    <ComboBoxItem Content="ИТ"/>
+                    <ComboBoxItem Content="Медицина"/>
+                    <ComboBoxItem Content="Транспорт"/>
+                    <ComboBoxItem Content="Общепит"/>
+                </ComboBox>
+
+            <Button Content="Фильтровать" Width="120" Margin="0 10 0 15" Command="{Binding FilterCommand}" HorizontalAlignment="Left"/>
+
+            <TextBlock Foreground="White" Margin="0 0 0 10" Text="Сортировать по: " FontSize="18" Height="22"/>
+            <ComboBox Width="140" Height="24" SelectedItem="{Binding SelectedSortOption}" HorizontalAlignment="Left">
+               <ComboBoxItem Content="Добавлен(убыв.)"/>
+               <ComboBoxItem Content="Добавлен(возр.)"/>
+               <ComboBoxItem Content="Зарплата(убыв.)"/>
+               <ComboBoxItem Content="Зарплата(возр.)"/>
+               <ComboBoxItem Content="Название"/>
+            </ComboBox>
+           <Button Content="Сортировать" Width="120" Margin="0 10 0 0" Command="{Binding SortCommand}" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <ListBox Padding="15 0 15 0" BorderThickness="0" Background="Transparent" Grid.Row="3" ItemsSource="{Binding Vacancies}" SelectedItem="{Binding SelectedVacancy}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ProductStyle}"/>
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                            <TextBlock FontSize="18" Text="{Binding Path=Title}"/>
+                            <TextBlock Text="{Binding Path=CompanyName}"/>
+                            <TextBlock Text="{Binding Path=Location}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding Path=Salary, StringFormat='${0:F2}'}"/>
+                            <TextBlock Text="{Binding Path=DataAdded, StringFormat='Добавлен: {0:MM.dd.yyyy}'}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction
+                            Command="{Binding SelectVacancyCommand}"
+                            CommandParameter="{Binding SelectedVacancy}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+    </Grid>
+</UserControl>

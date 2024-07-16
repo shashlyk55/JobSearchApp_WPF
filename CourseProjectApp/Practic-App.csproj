@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <RootNamespace>Practic_App</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\icons\close.png" />
+    <None Remove="assets\icons\exit.png" />
+    <None Remove="assets\icons\icon.ico" />
+    <None Remove="assets\icons\login.png" />
+    <None Remove="assets\icons\minimize.png" />
+    <None Remove="assets\icons\profile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\icons\close.png" />
+    <Resource Include="assets\icons\exit.png" />
+    <Resource Include="assets\icons\icon.ico" />
+    <Resource Include="assets\icons\login.png" />
+    <Resource Include="assets\icons\minimize.png" />
+    <Resource Include="assets\icons\profile.png" />
+  </ItemGroup>
+
+</Project>

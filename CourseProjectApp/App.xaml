@@ -1,0 +1,30 @@
+﻿<Application x:Class="Practic_App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Practic_App"
+             xmlns:viewModel="clr-namespace:Practic_App.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Practic_App.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModel:VacancyListViewModel}">
+                <view:VacancyListView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddVacancyViewModel}">
+                <view:AddVacancyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VacancyViewModel}">
+                <view:VacancyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DeleteVacancyViewModel}">
+                <view:DeleteVacancyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserProfileViewModel}">
+                <view:UserProfileView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserViewModel}">
+                <view:UserView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
